@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<record id="cancel_training_view_form" model="ir.ui.view">
+    <field name="name">Cancel Trainings</field>
+    <field name="model">training.cancel_training</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_1" colspan="4" col="2" string="Cancel Trainings">
+                <field name="cancel_reason_id"/>
+            </group>
+            <footer>
+                <button string="Confirm" name="action_confirm" type="object" class="oe_highlight" confirm="Cancel participants. Are you sure?"/>
+                or
+                <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="cancel_training_action" model="ir.actions.act_window">
+    <field name="name">Cancel Trainings</field>
+    <field name="res_model">training.cancel_training</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="cancel_training_view_form"/>
+    <field name="target">new</field>
+</record>
+</data>
+</openerp>
