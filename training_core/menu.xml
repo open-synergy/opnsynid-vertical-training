@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<menuitem
+    id="training_root_menu"
+    name="Training"
+    sequence="30"
+    />
+
+<menuitem
+    id="training_menu"
+    name="Training"
+    parent="training_root_menu"
+    sequence="1"
+    />
+
+<menuitem
+    id="training_participant_root_menu"
+    name="Participant"
+    parent="training_root_menu"
+    sequence="2"
+    />
+
+<menuitem
+    id="training_trainer_root_menu"
+    name="Trainer"
+    parent="training_root_menu"
+    sequence="3"
+    />
+
+<menuitem
+    id="training_report_menu"
+    name="Report"
+    parent="training_root_menu"
+    sequence="98"
+    />
+
+<menuitem
+    id="training_configuration_menu"
+    name="Configuration"
+    parent="training_root_menu"
+    sequence="99"
+    />
+
+<menuitem
+    id="training_configuration_training_menu"
+    name="Training"
+    parent="training_configuration_menu"
+    sequence="1"
+    />
+
+<menuitem
+    id="training_configuration_participant_menu"
+    name="Participant"
+    parent="training_configuration_menu"
+    sequence="2"
+    />
+
+<menuitem
+    id="training_configuration_trainer_menu"
+    name="Trainer"
+    parent="training_configuration_menu"
+    sequence="3"
+    />
+
+</data>
+</openerp>

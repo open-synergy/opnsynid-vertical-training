@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+training_cancel_reason_employee,training.cancel_reason - employee,model_training_cancel_reason,base.group_user,1,1,1,1
+training_cancel_reason_all,training.cancel_reason - all,model_training_cancel_reason,,1,0,0,0
+training_course_employee,training.course - employee,model_training_course,base.group_user,1,1,1,1
+training_course_all,training.course - all,model_training_course,,1,0,0,0
+training_method_employee,training.method - employee,model_training_method,base.group_user,1,1,1,1
+training_method_all,training.method - all,model_training_method,,1,0,0,0
+training_participant_cancel_reason_employee,training.participant_cancel_reason - employee,model_training_participant_cancel_reason,base.group_user,1,1,1,1
+training_participant_cancel_reason_all,training.participant_cancel_reason - all,model_training_participant_cancel_reason,,1,0,0,0
+training_training_participant_employee,training.training_participant - employee,model_training_training_participant,base.group_user,1,1,1,1
+training_training_participant_all,training.training_participant - all,model_training_training_participant,,1,0,0,0
+training_participant_employee,training.participant - employee,model_training_participant,base.group_user,1,1,1,1
+training_participant_all,training.participant - all,model_training_participant,,1,0,0,0
+training_trainer_employee,training.trainer - employee,model_training_trainer,base.group_user,1,1,1,1
+training_trainer_all,training.trainer - all,model_training_trainer,,1,0,0,0
+training_training_employee,training.training - employee,model_training_training,base.group_user,1,1,1,1
+training_training_all,training.training - all,model_training_training,,1,0,0,0

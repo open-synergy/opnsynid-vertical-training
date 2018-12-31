@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+
+<record id="training_training_view_tree" model="ir.ui.view">
+    <field name="name">training.training tree</field>
+    <field name="model">training.training</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="course_id"/>
+            <field name="company_id" groups="base.group_multi_company"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="state"/>
+        </tree>
+    </field>
+</record>
+
+<record id="training_training_view_form" model="ir.ui.view">
+    <field name="name">training.training form</field>
+    <field name="model">training.training</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <form>
+            <header>
+                <button name="button_confirm" string="Confirm" class="oe_highlight" type="object" attrs="{'invisible':['|',('state','!=','draft'),('confirm_ok','=',False)]}" confirm="Confirm training. Are you sure?"/>
+                <button name="button_approve" string="Approve" class="oe_highlight" type="object" attrs="{'invisible':['|',('state','!=','confirm'),('approve_ok','=',False)]}" confirm="Approve training. Are you sure?"/>
+                <button name="button_start" string="Start" class="oe_highlight" type="object" attrs="{'invisible':['|',('state','!=','approve'),('start_ok','=',False)]}" confirm="Start Training. Are you sure?"/>
+                <button name="button_finish" string="Finish" class="oe_highlight" type="object" attrs="{'invisible':['|',('state','!=','start'),('finish_ok','=',False)]}" confirm="Finish training. Are you sure?"/>
+                <button name="%(cancel_training_action)d" string="Cancel" type="action" attrs="{'invisible':['|',('state','=','cancel'),('cancel_ok','=',False)]}" confirm="Cancel training. Are you sure?"/>
+                <button name="button_restart" string="Set to Draft" class="oe_highlight" type="object" attrs="{'invisible':['|',('state','!=','cancel'),('restart_ok','=',False)]}" confirm="Reset training. Are you sure?"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve,start,finish"/>
+            </header>
+            <sheet>
+                <div class="oe_right oe_button_box" style="width: 300px;" name="buttons">
+                </div>
+                <div class="oe_left" style="width: 500px;">
+                    <div class="oe_title" style="width: 500px;">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <h2 attrs="{'invisible': [('state', '!=', 'cancel')]}">
+                            <label for="cancel_reason_id" string="Cancellation reason:"/>
+                            <field name="cancel_reason_id" class="oe_inline"/>
+                        </h2>
+                    </div>
+                </div>
+                <group name="group_1" colspan="4" col="2">
+                    <group name="group_1_1" colspan="1" col="2">
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="course_id"/>
+                        <field name="method_ids" widget="many2many_tags"/>
+                        <field name="trainer_ids" widget="many2many_tags"/>
+                    </group>
+                    <group name="group_1_2" colspan="1" col="2">
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+
+                    </group>
+                </group>
+                <notebook>
+                    <page name="participant" string="Participants">
+                        <group name="participant_1" colspan="4" col="2">
+                            <field name="participant_sequence_id"/>
+                        </group>
+                        <field name="participant_ids" colspan="4" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="participant_id"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page name="note" string="Note">
+                        <field name="note"/>
+                    </page>
+                    <page name="log" string="Log" groups="base.group_system">
+                        <group name="group_log_1" colspan="4" col="3">
+                            <field name="confirmed_date" string="Confirmation"/>
+                            <field name="confirmed_user_id" nolabel="1"/>
+                            <field name="approved_date" string="Approval"/>
+                            <field name="approved_user_id" nolabel="1"/>
+                            <field name="started_date" string="Start"/>
+                            <field name="started_user_id" nolabel="1"/>
+                            <field name="finished_date" string="Finish"/>
+                            <field name="finished_user_id" nolabel="1"/>
+                            <field name="cancelled_date" string="Cancellation"/>
+                            <field name="cancelled_user_id" nolabel="1"/>
+                        </group>
+                    </page>
+                    <page name="policy" string="Policy" groups="base.group_system">
+                        <group name="policy_1" colspan="4" col="2">
+                            <field name="confirm_ok"/>
+                            <field name="approve_ok"/>
+                            <field name="start_ok"/>
+                            <field name="finish_ok"/>
+                            <field name="cancel_ok"/>
+                            <field name="restart_ok"/>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            <div class="oe_chatter">
+                <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                <field name="message_ids" widget="mail_thread"/>
+            </div>
+        </form>
+    </field>
+</record>
+
+<record id="training_training_view_search" model="ir.ui.view">
+    <field name="name">training.training search</field>
+    <field name="model">training.training</field>
+    <field name="mode">primary</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="name"/>
+            <field name="course_id"/>
+            <group name="group_1" string="Group By">
+                <filter name="grp_state" string="State" context="{'group_by':'state'}"/>
+                <filter name="grp_course" string="Course" context="{'group_by':'course_id'}"/>
+                <filter name="grp_date_start_month" string="Date Start by Month" context="{'group_by':'date_start:month'}"/>
+                <filter name="grp_date_start_year" string="Date Start by Year" context="{'group_by':'date_start:year'}"/>
+            </group>
+        </search>
+    </field>
+</record>
+
+<record id="training_training_action" model="ir.actions.act_window">
+    <field name="name">Training</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="res_model">training.training</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="training_core.training_training_view_search"/>
+</record>
+
+<menuitem
+    id="training_training_menu"
+    name="Trainings"
+    parent="training_core.training_menu"
+    action="training_training_action"
+    sequence="1"
+    />
+
+
+</data>
+</openerp>

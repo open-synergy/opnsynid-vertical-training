@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+<!-- Training -->
+<record id="base_workflow_training_training" model="base.workflow_policy">
+    <field name="model_id" ref="training_core.model_training_training"/>
+</record>
+<record id="base_workflow_line_training_training_confirm" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_training"/>
+    <field name="field_id" search="[('model_id.model','=','training.training'),('name','=','confirm_ok')]"/>
+    <field name="python_code">result = document.company_id.training_confirm_group_ids.ids + document.course_id.training_confirm_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_training_approve" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_training"/>
+    <field name="field_id" search="[('model_id.model','=','training.training'),('name','=','approve_ok')]"/>
+    <field name="python_code">result = document.company_id.training_approve_group_ids.ids + document.course_id.training_approve_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_training_start" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_training"/>
+    <field name="field_id" search="[('model_id.model','=','training.training'),('name','=','start_ok')]"/>
+    <field name="python_code">result = document.company_id.training_start_group_ids.ids + document.course_id.training_start_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_training_finish" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_training"/>
+    <field name="field_id" search="[('model_id.model','=','training.training'),('name','=','finish_ok')]"/>
+    <field name="python_code">result = document.company_id.training_finish_group_ids.ids + document.course_id.training_finish_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_training_cancel" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_training"/>
+    <field name="field_id" search="[('model_id.model','=','training.training'),('name','=','cancel_ok')]"/>
+    <field name="python_code">result = document.company_id.training_cancel_group_ids.ids + document.course_id.training_cancel_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_training_restart" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_training"/>
+    <field name="field_id" search="[('model_id.model','=','training.training'),('name','=','restart_ok')]"/>
+    <field name="python_code">result = document.company_id.training_restart_group_ids.ids + document.course_id.training_restart_group_ids.ids</field>
+</record>
+
+<!-- Training Participant -->
+<record id="base_workflow_training_participant" model="base.workflow_policy">
+    <field name="model_id" ref="training_core.model_training_training_participant"/>
+</record>
+<record id="base_workflow_line_training_participant_confirm" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_participant"/>
+    <field name="field_id" search="[('model_id.model','=','training.training_participant'),('name','=','confirm_ok')]"/>
+    <field name="python_code">result = document.training_id.company_id.training_participant_confirm_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_participant_approve" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_participant"/>
+    <field name="field_id" search="[('model_id.model','=','training.training_participant'),('name','=','approve_ok')]"/>
+    <field name="python_code">result = document.training_id.company_id.training_participant_approve_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_participant_pass" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_participant"/>
+    <field name="field_id" search="[('model_id.model','=','training.training_participant'),('name','=','pass_ok')]"/>
+    <field name="python_code">result = document.training_id.company_id.training_participant_pass_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_participant_fail" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_participant"/>
+    <field name="field_id" search="[('model_id.model','=','training.training_participant'),('name','=','fail_ok')]"/>
+    <field name="python_code">result = document.training_id.company_id.training_participant_fail_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_participant_cancel" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_participant"/>
+    <field name="field_id" search="[('model_id.model','=','training.training_participant'),('name','=','cancel_ok')]"/>
+    <field name="python_code">result = document.training_id.company_id.training_participant_cancel_group_ids.ids</field>
+</record>
+<record id="base_workflow_line_training_participant_restart" model="base.workflow_policy_line">
+    <field name="workflow_id" ref="training_core.base_workflow_training_participant"/>
+    <field name="field_id" search="[('model_id.model','=','training.training_participant'),('name','=','restart_ok')]"/>
+    <field name="python_code">result = document.training_id.company_id.training_participant_restart_group_ids.ids</field>
+</record>
+</data>
+</openerp>
