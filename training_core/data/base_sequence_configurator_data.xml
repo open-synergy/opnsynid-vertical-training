@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 OpenSynergy Indonesia
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+
+<openerp>
+<data>
+<!-- Training -->
+<record id="base_sequence_training" model="base.sequence_configurator">
+    <field name="model_id" ref="training_core.model_training_training"/>
+    <field name="sequence_field_id" search="[('model_id.model','=','training.training'),('name','=','name')]"/>
+    <field name="fallback_sequence_id" ref="training_core.sequence_training_training"/>
+</record>
+
+<record id="base_sequence_training_line" model="base.sequence_configurator_line">
+    <field name="generator_id" ref="training_core.base_sequence_training"/>
+    <field name="sequence" eval="1"/>
+    <field name="sequence_computation_code">result = document.course_id.sequence_id</field>
+</record>
+
+<!-- Training Participant -->
+<record id="base_sequence_training_participant" model="base.sequence_configurator">
+    <field name="model_id" ref="training_core.model_training_training_participant"/>
+    <field name="sequence_field_id" search="[('model_id.model','=','training.training_participant'),('name','=','name')]"/>
+    <field name="fallback_sequence_id" ref="training_core.sequence_training_participant"/>
+</record>
+
+<record id="base_sequence_training_participant_line" model="base.sequence_configurator_line">
+    <field name="generator_id" ref="training_core.base_sequence_training_participant"/>
+    <field name="sequence" eval="1"/>
+    <field name="sequence_computation_code">result = document.training_id.participant_sequence_id</field>
+</record>
+</data>
+</openerp>
