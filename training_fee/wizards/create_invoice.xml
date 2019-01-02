@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<record id="training_create_invoice_view_form" model="ir.ui.view">
+    <field name="name">Create Invoice</field>
+    <field name="model">training.create_invoice</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_1" colspan="4" col="2" string="Create Invoice">
+                <field name="training_participant_id" on_change="onchange_training_participant_id(training_participant_id)"/>
+                <field name="journal_id"/>
+                <field name="date_invoice"/>
+            </group>
+            <field name="fee_line_ids" nolabel="1"/>
+            <footer>
+                <button string="Create Invoice" name="action_create_invoice" type="object" class="oe_highlight" confirm="Create invoice. Are you sure?"/>
+                or
+                <button string="Cancel" class="oe_link" special="cancel"/>
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="training_create_invoice_action" model="ir.actions.act_window">
+    <field name="name">Create Invoice</field>
+    <field name="res_model">training.create_invoice</field>
+    <field name="view_type">form</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="training_create_invoice_view_form"/>
+    <field name="target">new</field>
+</record>
+</data>
+</openerp>

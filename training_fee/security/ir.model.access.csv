@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+training_course_fee_employee,training.course_fee - employee,model_training_course_fee,base.group_user,1,1,1,1
+training_course_fee_all,training.course_fee - all,model_training_course_fee,,1,0,0,0
+training_participant_fee_employee,training.participant_fee - employee,model_training_participant_fee,base.group_user,1,1,1,1
+training_participant_fee_all,training.participant_fee - all,model_training_participant_fee,,1,0,0,0
+training_training_fee_employee,training.training_fee - employee,model_training_training_fee,base.group_user,1,1,1,1
+training_training_fee_all,training.training_fee - all,model_training_training_fee,,1,0,0,0
