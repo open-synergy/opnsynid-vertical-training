@@ -9,7 +9,7 @@
     <field name="name">training.course form</field>
     <field name="model">training.course</field>
     <field name="inherit_id" ref="training_core.training_course_view_form"/>
-    <field name="mode">primary</field>
+    <field name="mode">extension</field>
     <field name="arch" type="xml">
         <xpath expr="//page[@name='note']" position="before">
             <page name="fee" string="Fee">
