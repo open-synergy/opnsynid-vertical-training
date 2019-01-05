@@ -238,35 +238,36 @@ class TrainingTraining(models.Model):
     @api.multi
     def button_confirm(self):
         for training in self:
-            training.write(self._prepare_confirm_data())
+            training.write(training._prepare_confirm_data())
 
     @api.multi
     def button_approve(self):
         for training in self:
-            training.write(self._prepare_approve_data())
+            training.write(training._prepare_approve_data())
 
     @api.multi
     def button_start(self):
         for training in self:
-            training.write(self._prepare_start_data())
+            training.write(training._prepare_start_data())
 
     @api.multi
     def button_finish(self):
         for training in self:
-            training.write(self._prepare_finish_data())
+            training.write(training._prepare_finish_data())
 
     @api.multi
     def button_cancel(self, cancel_reason_id=False):
         for training in self:
-            training.write(self._prepare_cancel_data(cancel_reason_id))
+            training.write(training._prepare_cancel_data(cancel_reason_id))
 
     @api.multi
     def button_restart(self):
         for training in self:
-            training.write(self._prepare_restart_data())
+            training.write(training._prepare_restart_data())
 
-    @api.model
+    @api.multi
     def _prepare_confirm_data(self):
+        self.ensure_one()
         result = {
             "state": "confirm",
             "confirmed_date": fields.Datetime.now(),
@@ -274,8 +275,9 @@ class TrainingTraining(models.Model):
         }
         return result
 
-    @api.model
+    @api.multi
     def _prepare_approve_data(self):
+        self.ensure_one()
         result = {
             "state": "approve",
             "approved_date": fields.Datetime.now(),
@@ -283,8 +285,9 @@ class TrainingTraining(models.Model):
         }
         return result
 
-    @api.model
+    @api.multi
     def _prepare_start_data(self):
+        self.ensure_one()
         result = {
             "state": "start",
             "started_date": fields.Datetime.now(),
@@ -292,8 +295,9 @@ class TrainingTraining(models.Model):
         }
         return result
 
-    @api.model
+    @api.multi
     def _prepare_finish_data(self):
+        self.ensure_one()
         result = {
             "state": "finish",
             "finished_date": fields.Datetime.now(),
@@ -301,8 +305,9 @@ class TrainingTraining(models.Model):
         }
         return result
 
-    @api.model
+    @api.multi
     def _prepare_cancel_data(self, cancel_reason_id=False):
+        self.ensure_one()
         result = {
             "state": "cancel",
             "cancelled_date": fields.Datetime.now(),
@@ -311,8 +316,9 @@ class TrainingTraining(models.Model):
         }
         return result
 
-    @api.model
+    @api.multi
     def _prepare_restart_data(self):
+        self.ensure_one()
         result = {
             "state": "draft",
             "confirmed_date": False,

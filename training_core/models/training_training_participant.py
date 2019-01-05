@@ -269,8 +269,9 @@ class TrainingTrainingParticipant(models.Model):
         for participant in self:
             participant.write(participant._prepare_reset_data())
 
-    @api.model
+    @api.multi
     def _prepare_confirm_data(self):
+        self.ensure_one()
         result = {
             "state": "confirm",
             "confirmed_date": fields.Datetime.now(),
@@ -278,8 +279,9 @@ class TrainingTrainingParticipant(models.Model):
         }
         return result
 
-    @api.model
+    @api.multi
     def _prepare_approve_data(self):
+        self.ensure_one()
         result = {
             "state": "approve",
             "approved_date": fields.Datetime.now(),
