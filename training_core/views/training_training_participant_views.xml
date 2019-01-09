@@ -58,7 +58,7 @@
                         <field name="training_id" on_change="onchange_training_id(training_id)"/>
                         <field name="course_id"/>
                         <field name="participant_id"/>
-                        <field name="allowed_class_ids" widget="many2many_tags"/>
+                        <field name="allowed_class_ids" widget="many2many_tags" invisible="1"/>
                         <field name="class_id" domain="[('id', 'in', allowed_class_ids[0][2])]"/>
                     </group>
                     <group name="group_1_2" colspan="1" col="2">
